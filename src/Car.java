@@ -1,9 +1,9 @@
 /**
- * Project 1
+ * Project 3
  *
  * @author Telfort
  *
- * @created 25 Aug 2024
+ * @created 2 oct 2024
  *
  * @summary This class will be used to create a car object.
  */

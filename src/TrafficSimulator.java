@@ -1,12 +1,13 @@
 /**
- * Project 1
+ * Project 3
  *
  * @author Telfort
  *
- * @created 25 Aug 2024
+ * @created 2 oct 2024
  *
  * @summary This class will be used to simulate traffic
  */
+
 public class TrafficSimulator {
 
     public static void main(String[] args) {
