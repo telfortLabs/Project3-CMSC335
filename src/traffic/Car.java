@@ -1,3 +1,5 @@
+package traffic;
+
 /**
  * Project 3
  *
@@ -10,4 +12,4 @@
 
 public class Car {
 
-} // End of Car class
+} // End of traffic.Car class
