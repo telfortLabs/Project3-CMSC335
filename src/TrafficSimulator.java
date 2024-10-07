@@ -7,82 +7,138 @@ public class TrafficSimulator implements ActionListener, Runnable {
 
     JFrame frame;
     Road road;
-    JButton start, stop, pause, vehicle;
-    Container south, west;
+    JButton startSimulation, stopSimulation, blueCar, greyCar, redCar, yellowCar;
+    Container south, west, north;
     boolean running = false;
 
-    public TrafficSimulator() {
+    public void Gui() {
         frame = new JFrame("Traffic Simulator");
-        frame.setSize(1200, 750);
+        frame.setSize(1200, 900);
         frame.setLayout(new BorderLayout());
         road = new Road();
-        start = new JButton("Start");
-        stop = new JButton("Stop");
-        pause = new JButton("Pause");
-        vehicle = new JButton("Add Car");
+        startSimulation = new JButton("Start Simulation");
+        stopSimulation = new JButton("Stop Simulation");
+        blueCar = new JButton("Add blue car");
+        greyCar = new JButton("Add grey car");
+        redCar = new JButton("Add red car");
+        yellowCar = new JButton("Add yellow car");
 
         south = new Container();
         west = new Container();
+        north = new Container();
 
-        south.setLayout(new GridLayout(1, 3));
-        south.add(start);
-        start.addActionListener(this);
-        south.add(pause);
-        pause.addActionListener(this);
-        south.add(stop);
-        stop.addActionListener(this);
+        south.setLayout(new GridLayout(1, 2));
+        south.add(startSimulation);
+        startSimulation.addActionListener(this);
+        south.add(stopSimulation);
+        stopSimulation.addActionListener(this);
 
 
-        west.setLayout(new GridLayout(10, 1));
-        west.add(vehicle);
-        vehicle.addActionListener(this);
+        west.setLayout(new GridLayout(4, 1));
+        west.add(blueCar);
+        west.add(greyCar);
+        west.add(redCar);
+        west.add(yellowCar);
+        blueCar.addActionListener(this);
+        greyCar.addActionListener(this);
+        redCar.addActionListener(this);
+        yellowCar.addActionListener(this);
 
+        north.setLayout(new FlowLayout());
+        TrafficLights redLight = new TrafficLights();
+        road.addLight(redLight);
 
         frame.add(road, BorderLayout.CENTER);
         frame.add(west, BorderLayout.WEST);
         frame.add(south, BorderLayout.SOUTH);
-        GreyCar testCar = new GreyCar(10, 10, 4);
-        BlueCar testCar2 = new BlueCar(10, 170, 8);
-        RedCar testCar3 = new RedCar(10, 330, 6);
-        YellowCar testCar4 = new YellowCar(10, 510, 2);
-        road.addCar(testCar);
-        road.addCar(testCar2);
-        road.addCar(testCar3);
-        road.addCar(testCar4);
-        frame.repaint();
+        frame.add(north, BorderLayout.NORTH);
 
+        frame.repaint();
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     } // end of constructor
 
-    public static void main(String[] args) {
-        new TrafficSimulator();
-
-    } // end of main
-
     @Override
     public void actionPerformed(ActionEvent event) {
-        if (event.getSource().equals(start)) {
-            if(running == false) {
+        if (event.getSource().equals(startSimulation)) {
+            if(!running) {
                 running = true;
                 Thread t = new Thread(this);
                 t.start();
             }
         }
-        if (event.getSource().equals(stop)) {
+        if (event.getSource().equals(stopSimulation)) {
             running = false;
         }
+
+        if (event.getSource().equals(blueCar)) {
+            BlueCar newCar = new BlueCar(0, 10);
+            road.addCar(newCar);
+            for (int g = 0; g < road.roadWidth; g = g + 20) {
+                for (int k = 10; k < 600; k = k + 160) {
+                    newCar.setxCoordinate(g);
+                    newCar.setyCoordinate(k);
+                    if (!road.checkCollision(g,k, newCar)) {
+                        frame.repaint();
+                        return;
+                    }
+                }
+            }
+        } // end of if method to add car
+        if (event.getSource().equals(greyCar)) {
+            GreyCar newCar = new GreyCar(0, 10);
+            road.addCar(newCar);
+            for (int g = 0; g < road.roadWidth; g = g + 20) {
+                for (int k = 10; k < 600; k = k + 160) {
+                    newCar.setxCoordinate(g);
+                    newCar.setyCoordinate(k);
+                    if (!road.checkCollision(g,k, newCar)) {
+                        frame.repaint();
+                        return;
+                    }
+                }
+            }
+        } // end of if method to add car
+        if (event.getSource().equals(yellowCar)) {
+            YellowCar newCar = new YellowCar(0, 10);
+            road.addCar(newCar);
+            for (int g = 0; g < road.roadWidth; g = g + 20) {
+                for (int k = 10; k < 600; k = k + 160) {
+                    newCar.setxCoordinate(g);
+                    newCar.setyCoordinate(k);
+                    if (!road.checkCollision(g,k, newCar)) {
+                        frame.repaint();
+                        return;
+                    }
+                }
+            }
+        } // end of if method to add car
+        if (event.getSource().equals(redCar)) {
+            RedCar newCar = new RedCar(0, 10);
+            road.addCar(newCar);
+            for (int g = 0; g < road.roadWidth; g = g + 20) {
+                for (int k = 10; k < 600; k = k + 160) {
+                    newCar.setxCoordinate(g);
+                    newCar.setyCoordinate(k);
+                    if (!road.checkCollision(g,k, newCar)) {
+                        frame.repaint();
+                        return;
+                    }
+                }
+            }
+        } // end of if method to add car
     } // end of action performed
 
     @Override
     public void run() {
-        while(running == true) {
-            road.step();
+        while(running) {
+            road.moveCars();
             frame.repaint();
             try{
                 Thread.sleep(100);
             } catch (Exception e) {
                 e.printStackTrace();
+
             }
         }
     } // end of run method
