@@ -4,15 +4,14 @@ import java.awt.image.BufferedImage;
 
 public class GreyCar extends Car {
 
-    BufferedImage greyCar;
+    private BufferedImage greyCar;
 
-    public GreyCar(int newX, int newY, int speed) {
-        super(newX, newY, speed);
+    public GreyCar(int newX, int newY) {
+        super(newX, newY);
 
         width = 245;
         height = 140;
-        this.speed = speed;
-
+        speed = 4;
         try {
             greyCar = ImageIO.read(getClass().getResource("greyCar.jpg"));
         } catch (Exception e) {
@@ -22,7 +21,7 @@ public class GreyCar extends Car {
     }
 
     public void paintCar(Graphics g) {
-        g.drawImage(greyCar, x, y, null);
+        g.drawImage(greyCar, xCoordinate, yCoordinate, null);
     } //end of method to paint car
 
 } // end of grey car

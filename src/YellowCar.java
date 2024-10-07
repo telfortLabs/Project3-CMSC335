@@ -4,14 +4,14 @@ import java.awt.image.BufferedImage;
 
 public class YellowCar extends Car {
 
-    BufferedImage yellowCar;
+    private BufferedImage yellowCar;
 
-    public YellowCar(int newX, int newY, int speed) {
-        super(newX, newY, speed);
+    public YellowCar (int newX, int newY) {
+        super(newX, newY);
 
         width = 245;
         height = 140;
-        this.speed = speed;
+        speed = 10;
 
         try {
             yellowCar = ImageIO.read(getClass().getResource("yellowCar.png"));
@@ -21,7 +21,7 @@ public class YellowCar extends Car {
     }
 
         public void paintCar(Graphics g) {
-            g.drawImage(yellowCar, x, y, null);
-        }
+            g.drawImage(yellowCar, xCoordinate, yCoordinate, null);
+        } // end of paint car method
 
 } // end of yellow car

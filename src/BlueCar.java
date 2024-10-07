@@ -4,24 +4,25 @@ import java.awt.image.BufferedImage;
 
 public class BlueCar extends Car {
 
-    BufferedImage blueCar;
+    private BufferedImage blueCar;
 
-    public BlueCar(int newX, int newY, int speed) {
-        super(newX, newY, speed);
+    public BlueCar(int newX, int newY) {
+        super(newX, newY);
 
         width = 245;
         height = 140;
-        this.speed = speed;
+        speed = 6;
 
         try {
             blueCar = ImageIO.read(getClass().getResource("blueCar.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    } // end of constructor
 
     public void paintCar(Graphics g) {
-        g.drawImage(blueCar, x, y, null);
-    }
+
+        g.drawImage(blueCar, xCoordinate, yCoordinate, null);
+    } // end of paint car method
 
 } // end of blue car

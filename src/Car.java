@@ -1,44 +1,43 @@
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 
 
 public abstract class Car {
 
-    int x, y;
+    int xCoordinate, yCoordinate;
     int width;
     int height;
     int speed;
 
 
-    public Car(int newX, int newY, int speed) {
-        x = newX;
-        y = newY;
+    public Car(int newX, int newY) {
+        xCoordinate = newX;
+        yCoordinate = newY;
         width = 245;
         height = 140;
-        this.speed = speed;
-
     }
 
-    public int getX() {
-        return x;
+    public int getxCoordinate() {
+        return xCoordinate;
     }
 
-    public int getY() {
-        return y;
+    public int getyCoordinate() {
+        return yCoordinate;
     }
 
     public int getSpeed() {
         return speed;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setxCoordinate(int xCoordinate) {
+        this.xCoordinate = xCoordinate;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setyCoordinate(int yCoordinate) {
+        this.yCoordinate = yCoordinate;
+    }
+
+    public int getWidth() {
+        return width;
     }
 
     public void paintCar(Graphics g) {} //end of method to paint car
