@@ -2,9 +2,25 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Project 3
+ *
+ * @author Telfort
+ *
+ * @created  2 Oct 2024
+ *
+ * @summary This class will be used to create
+ * traffic light objects and add them to the road.
+ */
+
 public class TrafficLights {
 
-    private BufferedImage redLight, greenLight, yellowLight;
+    private BufferedImage redLight, greenLight, yellowLight;                                                            // variables for red, green and yellow light
+
+    /**
+     * The constructor below takes no parameters, and
+     * will try to load the images of the lights.
+     */
 
     public TrafficLights() {
 
@@ -17,6 +33,12 @@ public class TrafficLights {
         }
 
     } // end of constructor
+
+    /**
+     * The method below takes one parameter
+     * @param g of type graphics then load the
+     * images at specific coordinates on the road.
+     */
 
     public void paintLight(Graphics g) {
         g.drawImage(redLight, 950, 20, null);
